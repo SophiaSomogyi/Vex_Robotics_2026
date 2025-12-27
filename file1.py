@@ -105,23 +105,18 @@ def start():
 def checkColor():
     if optical_sensor.color() == Color.RED:
         brain.screen.print("Red Object")
-        moveMotor("red")
+        moveMotor(FORWARD)
     elif optical_sensor.color() == Color.BLUE:
         brain.screen.print("Blue Object")
-        moveMotor("blue")
+        moveMotor(REVERSE)
     else:
         brain.screen.print("No Color")
+        moveMotor("none")
 
-# function to move the motor according to the color
-def moveMotor(color):
-    brain.screen.print("Move Motor:", color)
-    if color == "red":
-        motor_1.spin(FORWARD)
-        wait(1, SECONDS)
-    if color == "blue":
-       motor_1.spin(REVERSE)
-       wait(1,SECONDS)
+# function to move the motor FORWARD or REVERSE
 
+def moveMotor(motorDirection):
+    motor_1.spin(motorDirection)
 
 start()
 
