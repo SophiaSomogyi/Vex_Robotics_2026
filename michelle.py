@@ -18,6 +18,11 @@ def robForward():
     motor_3.spin(FORWARD)
     motor_4.stop(COAST)
 
+def robBackward():
+    motor_2.spin(REVERSE)
+    motor_3.spin(REVERSE)
+    motor_4.stop(COAST)
+
 def robSideLEFT():
     motor_2.stop(COAST)
     motor_3.stop(COAST)
