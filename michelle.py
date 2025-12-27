@@ -38,8 +38,21 @@ def robLEFT():
     motor_3.spin(FORWARD)
     motor_4.stop(COAST)
   
-  def robRIGHT():
+def robRIGHT():
     motor_2.spin(FORWARD)
     motor_3.spin(REVERSE)
     motor_4.stop(COAST)
+
+#function to move intake
+#motor_5 = Motor(Ports.PORT6) #1
+#motor_6 = Motor(Ports.PORT7) #2
+#motor_7 = Motor(Ports.PORT8) #3
+
+def shortGoal():
+    motor_5.spin(FORWARD)
+    motor_6.spin(REVERSE)
+    motor_7.spin(REVERSE)
+
+def short
+
 
