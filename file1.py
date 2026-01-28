@@ -74,24 +74,45 @@ print("\033[2J")
 # Library imports
 from vex import *
 
-# ASSIGNING PORTS 
+# ASSIGNING PORTS - FROM MICHELLE 
+
 optical_sensor = Optical(Ports.PORT1)
-motor_1 = Motor(Ports.PORT2)
+motor_1 = Motor(Ports.PORT2) #colour sensor, back intake
 
+#drivetrain motors
+motor_2 = Motor(Ports.PORT3) #left
+motor_3 = Motor(Ports.PORT4) #right
+motor_4 = Motor(Ports.PORT5) #hdrive
 
+#front intake motors
+motor_5 = Motor(Ports.PORT6) #1
+motor_6 = Motor(Ports.PORT7) #2
+motor_7 = Motor(Ports.PORT8) #3
+
+#back intake motor
+motor_8 = Motor(Ports.PORT9)
+
+# Assigning team colors - this should be changed when making separate files !
+teamColor = "red"
+opponentColor = "blue"
 
 # Begin project code
 
+# main script  
 def start():
-    i = 1
+    #initial commands
     brain.screen.print("Start!")
-    brain.screen.clear_screen()
-    optical_sensor.set_light_power(70, PERCENT)
+    brain.screen.clear_screen() #clears the screen 
+    optical_sensor.set_light_power(70, PERCENT) #sets the light on the optical sensor - might need to change this 
 
-    cursorLine = 1;
+
+
+    # loop that controls the screen output to be on a new line each time and refresh when it gets to the bottom of the screen
+    cursorLine = 1
+    i = 1
     while i < 30:
-        brain.screen.set_cursor(cursorLine, 1)
-        checkColor()
+        brain.screen.set_cursor(cursorLine, 1) 
+        checkColor() #check color fn 
         wait(1, SECONDS)
         i += 1
         # text goes to the next line
@@ -100,18 +121,30 @@ def start():
         if cursorLine == 12:
             brain.screen.clear_screen()
             cursorLine = 1
+        
+#function to sort balls according to color 
+def sortBall():
+    if checkColor() == teamColor:
+        #check if space
+        #move motors correctly to place into hold
+
+    else if checkColor() == opponentColor:
+        #check if space
+        #move motors correctly to place into hold 
+    
 
 # function to check the color, if it is red or blue that is the output, if not it is "no color"
 def checkColor():
     if optical_sensor.color() == Color.RED:
         brain.screen.print("Red Object")
-        moveMotor(FORWARD)
+        return("Red")
     elif optical_sensor.color() == Color.BLUE:
         brain.screen.print("Blue Object")
-        moveMotor(REVERSE)
+        return("Blue")
     else:
         brain.screen.print("No Color")
         moveMotor("none")
+        return("NoColor")
 
 # function to move the motor FORWARD or REVERSE
 
@@ -120,6 +153,59 @@ def moveMotor(motorDirection):
 
 start()
 
-    #brain.screen.print("Timer in Seconds: ", brain.timer.time(SECONDS))
-    #brain.screen.clear_screen()
-    #brain.screen.set_cursor(1, 1)
+
+def checktimer():
+    if brain.timer.time(SECONDS) == 15:
+        brain.screen.print("15 seconds passed")
+          
+
+# MOVEMENTS
+def moveRight():
+    ##
+
+def moveLeft():
+    ##
+
+def moveForward():
+    ##
+
+def moveBackwards():
+    ##
+
+# BALL CONTROL - CHANGE motor_#'s to be correct!!!! 
+
+def storeTeamBall():
+    motor_1.spin(REVERSE)
+    motor_2.spin(FORWARD)
+    motor_3.spin(FORWARD)
+    motor_4.spin(REVERSE)
+    motor_5.spin(REVERSE)
+
+
+def storeOpponentBall():
+    # n/a motor_1.spin()
+    motor_2.spin(FORWARD)
+    motor_3.spin(REVERSE)
+    motor_4.spin(FORWARD)
+    motor_5.spin(REVERSE)
+
+def longGoal():
+    motor_1.spin(REVERSE)
+    motor_2.spin(FORWARD)
+    motor_3.spin(FORWARD)
+    motor_4.spin(REVERSE)
+    motor_5.spin(REVERSE)
+
+def shortGoal():
+    # N/A motor_1.spin()
+    motor_2.spin(REVERSE)
+    motor_3.spin(FORWARD)
+    motor_4.spin(FORWARD)
+    motor_5.spin(REVERSE)
+
+def takeOut():
+    # N/A motor_1.spin()
+    # N/A motor_2.spin()
+    # N/A motor_3.spin()
+    motor_4.spin(REVERSE)
+    motor_5.spin(FORWARD)
