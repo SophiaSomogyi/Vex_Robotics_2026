@@ -161,6 +161,87 @@ def stopDriveMotors():
     rightDrive.stop()
 
 
+# # # BALL CONTROL FUNCTIONS # # #
+
+# motor movement to store balls of the correct color
+def storeTeamBall():
+    global myVariable
+    # velocity 
+    colourMotor.set_velocity(100, PERCENT)
+    top.set_velocity(0, PERCENT)
+    middle.set_velocity(100, PERCENT)
+    bottom.set_velocity(100, PERCENT)
+    backIntake.set_velocity(100, PERCENT)
+    # direction
+    colourMotor.spin(REVERSE)
+    middle.spin(FORWARD)
+    bottom.spin(FORWARD)
+    backIntake.spin(REVERSE)
+
+# motor movement to store enemy / opponent balls
+def storeEnemyBall():
+    # velocity
+    colourMotor.set_velocity(100, PERCENT)
+    leftDrive.set_velocity(100, PERCENT)
+    leftDrive.set_velocity(100, PERCENT)
+    leftDrive.set_velocity(100, PERCENT)
+    colourMotor.set_velocity(100,PERCENT)
+    # direction
+    backIntake.spin(REVERSE)
+    middle.spin(FORWARD)
+    bottom.spin(FORWARD)
+    colourMotor.spin(FORWARD)
+    #colourMotor.spin_for(FORWARD, 90, DEGREES) - what michelle had 
+
+# motor movement to output balls into the long goal 
+def longGoal():
+    global myVariable
+    # velocity
+    bottom.set_velocity(100, PERCENT)
+    middle.set_velocity(100, PERCENT)
+    top.set_velocity(100, PERCENT)
+    backIntake.set_velocity(100, PERCENT)
+    # direction
+    top.spin(REVERSE)
+    middle.spin(FORWARD)
+    bottom.spin(FORWARD)
+    backIntake.spin(REVERSE)
+
+# motor movement to output balls into the short goal 
+def shortGoal():
+    global myVariable
+    # velocity
+    bottom.set_velocity(100, PERCENT)
+    middle.set_velocity(100, PERCENT)
+    top.set_velocity(0, PERCENT)
+    backIntake.set_velocity(100, PERCENT)
+    # direction
+    middle.spin(REVERSE)
+    bottom.spin(FORWARD)
+    backIntake.spin(REVERSE)
+
+# motor movement to take balls out of storage, must happen before short/long goal output
+def takeOut(): # / leave storage 
+    global myVariable
+    # velocity
+    colourMotor.set_velocity(100, PERCENT)
+    backIntake.set_velocity(100, PERCENT)
+    bottom.set_velocity(70, PERCENT)
+    colourMotor.spin(REVERSE)
+    backIntake.spin(FORWARD)
+    bottom.spin(FORWARD)
+
+# stops all motors 
+def stopAllMotors():
+    hdrive.stop()
+    leftDrive.stop()
+    rightDrive.stop()
+    bottom.stop()
+    middle.stop()
+    top.stop()
+    backIntake.stop()
+    colourMotor.stop()
+
 
 """
 FROM TEMPLATE: 
