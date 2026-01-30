@@ -231,6 +231,14 @@ def takeOut(): # / leave storage
     backIntake.spin(FORWARD)
     bottom.spin(FORWARD)
 
+# stops motors that control ball movement
+def stopBallMotors():
+    bottom.stop()
+    middle.stop()
+    top.stop()
+    backIntake.stop()
+    colourMotor.stop()
+
 # stops all motors 
 def stopAllMotors():
     hdrive.stop()
